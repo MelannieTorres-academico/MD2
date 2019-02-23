@@ -78,6 +78,11 @@ def toChar(A):
         A[i] = chr(A[i])
     return A
 
+def toHex(A):
+    for i in range(len(A)):
+        A[i] = '{:02x}'.format(A[i])
+    return A
+
 def main():
     file_input = fileinput.input()
     M = file_input[0].replace("\n", "").replace('"', "")
@@ -92,7 +97,9 @@ def main():
     # print(MC)
     var_hash = func_hash(MC)
     #print(var_hash)
-    var_hash = toChar(var_hash)
-    print(''.join(var_hash))
+    # var_hash = toChar(var_hash)
+    # print(''.join(var_hash))
+    print(''.join(toHex(var_hash)))
+
 if __name__ == "__main__":
     main()
