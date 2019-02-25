@@ -28,8 +28,6 @@ def add_padding(M):
     M = bytes(M) #actually convert to byte
     size = len(M) #meassure size of bytes
     missing_bytes = (16 - (size % 16)) #calculates the length needed for the padding
-    print(size)
-    print(missing_bytes)
     for i in range(1, missing_bytes+1):
         M += bytes([i])
     return M
