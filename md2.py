@@ -21,9 +21,6 @@ S = [
     31, 26, 219, 153, 141, 51, 159, 17, 131, 20
 ]
 
-#en grandes checar varios bloques
-# cada letra sería un byte
-
 # Adds the padding so its size is a multiple of 16 bytes
 # Recieves a string S
 # Returns a message M in bytes
@@ -36,19 +33,10 @@ def add_padding(M):
         M += bytes([missing_bytes])
     return M
 
-# initializesa var size the num_bytes given with the value provided
-# # recieves two ints, num_bytes and value
-# def initialize(num_bytes, value):
-#     A = bytes()
-#     for i in range(num_bytes):
-#         A+= bytes([value])
-#     return A
-
 # Generates the checksum
 # Recieves a message M in bytes and a message S as a string
 def checksum(M):
     L = 0
-    #C = initialize(16, 0)
     C = [0]*16
     N = len(M)
     for i in range(int(N/16)):
@@ -84,18 +72,10 @@ def main():
     file_input = fileinput.input()
     M = file_input[0].replace("\n", "").replace('"', "")
     M = add_padding(M)
-    # print("M")
-    # print(M)
     C = checksum(M)
-    # print("C")
-    # print(C)
     MC = M+bytes(C)
-    # print("MC")
-    # print(MC)
     var_hash = func_hash(MC)
     result = var_hash[:16]
-    #print(var_hash)
-    # print(''.join(var_hash))
     print(''.join(toHex(result)))
 
 if __name__ == "__main__":
